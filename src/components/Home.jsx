@@ -107,7 +107,6 @@ export default function Home({ setAudioStream, setFile, setTranscriptionProp }) 
 
   return (
     <>
-      <CountriesSelect />
       <div className={`home-first-step-translation ${showTranslation ? 'show' : ''}`}>
         <div className={`home-first-step-container`}>
           <h3 className='font-medium md:text-lg'>Record <span className='text-green-400'>&rarr;</span> Transcribe <span className='text-green-400'>&rarr;</span> Translate</h3>
