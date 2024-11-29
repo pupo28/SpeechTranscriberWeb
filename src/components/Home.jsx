@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react';  
+import React, { useState, useEffect, useRef } from 'react';   
 import Clipboard from './ClipBoard.jsx';
 import Notifications from './Notifications';
 
 export default function Home({ setAudioStream, setFile, setTranscriptionProp }) {
   const [recordingStatus, setRecordingStatus] = useState('inactive');
   const [audioChunks, setAudioChunks] = useState([]);
-  const [duration, setDuration] = useState(0);
+  const [duration, setDuration] = useState(0);  // Durata in secondi
   const [transcription, setTranscription] = useState('');
   const [showTranslation, setShowTranslation] = useState(false);
   const [notificationType, setNotificationType] = useState('');
@@ -51,7 +51,7 @@ export default function Home({ setAudioStream, setFile, setTranscriptionProp }) 
         video: false
       });
       tempStream = streamData;
-      mediaStream.current = tempStream;  // Salva il flusso per gestirlo dopo
+      mediaStream.current = tempStream;  
     } catch (err) {
       console.log(err.message);
       return;
@@ -113,6 +113,17 @@ export default function Home({ setAudioStream, setFile, setTranscriptionProp }) 
     return () => clearInterval(interval);
   }, [recordingStatus]);
 
+  // Funzione per formattare la durata in minuti:secondi
+  const formatDuration = (duration) => {
+    if (duration < 60) {
+      return `${duration} s`; // Mostra i secondi se inferiore a 60
+    } else {
+      const minutes = Math.floor(duration / 60);
+      const seconds = duration % 60;
+      return `${minutes}m ${seconds}s`; // Mostra minuti e secondi
+    }
+  };
+
   return (
     <>
       {notificationType && <Notifications type={notificationType} />}
@@ -122,6 +133,11 @@ export default function Home({ setAudioStream, setFile, setTranscriptionProp }) 
           <button onClick={recordingStatus === 'recording' ? stopRecording : startRecording} className='flex specialBtn px-4 py-2 rounded-xl items-center text-base justify-between gap-4 mx-auto w-72 max-w-full my-4'>
             <p className='text-green-400'>{recordingStatus === 'inactive' ? 'Record' : `Stop recording`}</p>
             <div className='flex items-center gap-2'>
+              {recordingStatus === 'recording' && (
+                <div className='text-red-400'>
+                  <p>{formatDuration(duration)}</p> 
+                </div>
+              )}
               <i className={"fa-solid duration-200 fa-microphone " + (recordingStatus === 'recording' ? ' text-rose-300' : "")}></i>
             </div>
           </button>
@@ -129,20 +145,6 @@ export default function Home({ setAudioStream, setFile, setTranscriptionProp }) 
             const tempFile = e.target.files[0];
             setFile(tempFile);
           }} className='hidden' type='file' accept='.mp3,.wave' /></label> a mp3 file</p>
-
-          {recordingStatus === 'recording' && (
-            <div className="transcription">
-              <h4>Transcription:</h4>
-              <p>{transcription}</p>
-            </div>
-          )}
-
-          {recordingStatus === 'recording' && (
-            <div className="duration">
-              <h4>Duration:</h4>
-              <p>{duration} seconds</p>
-            </div>
-          )}
         </div>
       </div>
 
