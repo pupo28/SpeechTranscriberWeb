@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react'; 
 import Clipboard from './ClipBoard.jsx';
-import { CountriesSelect } from './CountriesSelect.jsx';
+import Notifications from './Notifications';
 
 export default function Home({ setAudioStream, setFile, setTranscriptionProp }) {
   const [recordingStatus, setRecordingStatus] = useState('inactive');
@@ -8,6 +8,7 @@ export default function Home({ setAudioStream, setFile, setTranscriptionProp }) 
   const [duration, setDuration] = useState(0);
   const [transcription, setTranscription] = useState('');
   const [showTranslation, setShowTranslation] = useState(false);
+  const [notificationType, setNotificationType] = useState('');
 
   const mediaRecorder = useRef(null);
   const speechRecognition = useRef(null);
@@ -32,10 +33,10 @@ export default function Home({ setAudioStream, setFile, setTranscriptionProp }) 
       };
 
       speechRecognition.current.onerror = (err) => {
-        console.error('SpeechRecognition Error:', err); // not supported in this browser
+        setNotificationType('danger'); 
       };
     } else {
-      console.log('SpeechRecognition API not supported in this browser');
+      setNotificationType('danger'); 
     }
   }, []);
 
@@ -107,6 +108,7 @@ export default function Home({ setAudioStream, setFile, setTranscriptionProp }) 
 
   return (
     <>
+      {notificationType && <Notifications type={notificationType} />}
       <div className={`home-first-step-translation ${showTranslation ? 'show' : ''}`}>
         <div className={`home-first-step-container`}>
           <h3 className='font-medium md:text-lg'>Record <span className='text-green-400'>&rarr;</span> Transcribe <span className='text-green-400'>&rarr;</span> Translate</h3>
