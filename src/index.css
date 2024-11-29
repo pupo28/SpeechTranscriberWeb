@@ -177,6 +177,12 @@ h3,
   animation: slide-out 0.5s ease-in-out forwards;
 }
 
+.lip-icon {
+  color: green;
+  margin-left: 8px; /* Per separare l'icona dal nome */
+}
+
+
 /* GESTIONE DELLE WIDTH */  
 @keyframes width {
   0%{width: 100%;}

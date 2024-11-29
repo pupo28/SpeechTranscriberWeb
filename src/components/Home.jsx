@@ -5,14 +5,14 @@ import Notifications from './Notifications';
 export default function Home({ setAudioStream, setFile, setTranscriptionProp }) {
   const [recordingStatus, setRecordingStatus] = useState('inactive');
   const [audioChunks, setAudioChunks] = useState([]);
-  const [duration, setDuration] = useState(0);  // Durata in secondi
+  const [duration, setDuration] = useState(0);  
   const [transcription, setTranscription] = useState('');
   const [showTranslation, setShowTranslation] = useState(false);
   const [notificationType, setNotificationType] = useState('');
 
   const mediaRecorder = useRef(null);
   const speechRecognition = useRef(null);
-  const mediaStream = useRef(null);  // Aggiungi per gestire il flusso del microfono
+  const mediaStream = useRef(null);  
 
   const mimeType = 'audio/webm';
 
@@ -113,14 +113,13 @@ export default function Home({ setAudioStream, setFile, setTranscriptionProp }) 
     return () => clearInterval(interval);
   }, [recordingStatus]);
 
-  // Funzione per formattare la durata in minuti:secondi
   const formatDuration = (duration) => {
     if (duration < 60) {
-      return `${duration} s`; // Mostra i secondi se inferiore a 60
+      return `${duration} s`; 
     } else {
       const minutes = Math.floor(duration / 60);
       const seconds = duration % 60;
-      return `${minutes}m ${seconds}s`; // Mostra minuti e secondi
+      return `${minutes}m ${seconds}s`; 
     }
   };
 
@@ -129,7 +128,7 @@ export default function Home({ setAudioStream, setFile, setTranscriptionProp }) 
       {notificationType && <Notifications type={notificationType} />}
       <div className={`home-first-step-translation ${showTranslation ? 'show' : ''}`}>
         <div className={`home-first-step-container`}>
-          <h3 className='font-medium md:text-lg'>Record <span className='text-green-400'>&rarr;</span> Transcribe <span className='text-green-400'>&rarr;</span> Translate</h3>
+          <h3 className='font-medium md:text-lg'>Record <span className='text-green-400'>&rarr;</span> Transcribe </h3>
           <button onClick={recordingStatus === 'recording' ? stopRecording : startRecording} className='flex specialBtn px-4 py-2 rounded-xl items-center text-base justify-between gap-4 mx-auto w-72 max-w-full my-4'>
             <p className='text-green-400'>{recordingStatus === 'inactive' ? 'Record' : `Stop recording`}</p>
             <div className='flex items-center gap-2'>
