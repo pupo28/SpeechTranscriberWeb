@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'; 
+import React, { useState, useEffect, useRef } from 'react';  
 import Clipboard from './ClipBoard.jsx';
 import Notifications from './Notifications';
 
@@ -12,6 +12,7 @@ export default function Home({ setAudioStream, setFile, setTranscriptionProp }) 
 
   const mediaRecorder = useRef(null);
   const speechRecognition = useRef(null);
+  const mediaStream = useRef(null);  // Aggiungi per gestire il flusso del microfono
 
   const mimeType = 'audio/webm';
 
@@ -50,6 +51,7 @@ export default function Home({ setAudioStream, setFile, setTranscriptionProp }) 
         video: false
       });
       tempStream = streamData;
+      mediaStream.current = tempStream;  // Salva il flusso per gestirlo dopo
     } catch (err) {
       console.log(err.message);
       return;
@@ -93,6 +95,11 @@ export default function Home({ setAudioStream, setFile, setTranscriptionProp }) 
 
     if (speechRecognition.current) {
       speechRecognition.current.stop();
+    }
+
+    if (mediaStream.current) {
+      mediaStream.current.getTracks().forEach(track => track.stop());
+      mediaStream.current = null;
     }
   }
 
