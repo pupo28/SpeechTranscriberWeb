@@ -4,7 +4,7 @@ function Footer() {
         <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
           <div className="md:flex md:justify-between">
             <div className="mb-6 md:mb-0">
-              <a href="https://flowbite.com/" className="flex items-center">
+              <a href="/#" className="flex items-center">
                 <img src="../src/img/lips_icon.png" className="h-8 me-3" alt="FlowBite Logo" />
                 <span className="self-center text-1xl font-bold whitespace-nowrap text-gray-800 dark:text-white">SpeechTranscriber</span>
               </a>
@@ -25,10 +25,10 @@ function Footer() {
                 <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Legal</h2>
                 <ul className="text-gray-500 dark:text-gray-400 font-medium">
                   <li className="mb-4">
-                    <a href="#" className="hover:text-green-600">Privacy Policy</a>
+                    <a href="/#" className="hover:text-green-600">Privacy Policy</a>
                   </li>
                   <li>
-                    <a href="#" className="hover:text-green-600">Terms & Conditions</a>
+                    <a href="/#" className="hover:text-green-600">Terms & Conditions</a>
                   </li>
                 </ul>
               </div>
@@ -36,7 +36,7 @@ function Footer() {
           </div>
           <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
           <div className="sm:flex sm:items-center sm:justify-between">
-            <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2024 <a href="#" className="hover:text-green-600">SpeechTranscriber™</a>. All Rights Reserved.</span>
+            <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2024 <a href="/#" className="hover:text-green-600">SpeechTranscriber™</a>. All Rights Reserved.</span>
             <div className="flex mt-4 sm:justify-center sm:mt-0">
               <a href="https://github.com/pupo28" className="text-gray-500 hover:text-gray-900 dark:hover:text-green-600 ms-5">
                 <svg className="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
