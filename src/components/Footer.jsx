@@ -1,3 +1,5 @@
+import logo from '../img/lips_icon.png';  
+
 function Footer() {
     return (
       <footer className="bg-white dark:bg-gray-800">
@@ -5,7 +7,7 @@ function Footer() {
           <div className="md:flex md:justify-between">
             <div className="mb-6 md:mb-0">
               <a href="/#" className="flex items-center">
-                <img src="../../public/img/lips_icon.png" className="h-8 me-3" alt="FlowBite Logo" />
+                <img src={logo} className="h-8 me-3" alt="SpeechTranscriber Logo" />
                 <span className="self-center text-1xl font-bold whitespace-nowrap text-gray-800 dark:text-white">SpeechTranscriber</span>
               </a>
             </div>
