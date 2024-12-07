@@ -2,8 +2,8 @@ import React, { useRef, useState, useEffect } from "react";
 
 export default function Clipboard({ text }) {
   const [copySuccess, setCopySuccess] = useState("");
-  const [isEditable, setIsEditable] = useState(false);  
-  const [editableText, setEditableText] = useState(text);  
+  const [isEditable, setIsEditable] = useState(false);
+  const [editableText, setEditableText] = useState(text);
   const inputRef = useRef(null);
 
   useEffect(() => {
@@ -11,7 +11,7 @@ export default function Clipboard({ text }) {
       setEditableText(text);
     }
     adjustTextareaHeight();
-  }, [text]);  
+  }, [text]);
 
   const adjustTextareaHeight = () => {
     if (inputRef.current) {
@@ -21,7 +21,7 @@ export default function Clipboard({ text }) {
   };
 
   const handleTextChange = (e) => {
-    setEditableText(e.target.value); 
+    setEditableText(e.target.value);
     adjustTextareaHeight();
   };
 
@@ -30,16 +30,16 @@ export default function Clipboard({ text }) {
       inputRef.current.select();
       document.execCommand("copy");
       setCopySuccess("Copied!");
-      setTimeout(() => setCopySuccess(""), 2000); 
+      setTimeout(() => setCopySuccess(""), 2000);
     }
   };
 
   const toggleEdit = () => {
-    setIsEditable(!isEditable);  
+    setIsEditable(!isEditable);
   };
 
   return (
-    <section className="bg-white py-20 dark:bg-dark">
+    <section className="bg-white dark:bg-dark">
       <div className="container-clip-board">
         <div className="mx-auto w-full max-w-[500px]">
           <div className="relative flex justify-between items-center border border-stroke rounded-t-lg bg-gray-1 p-2 dark:border-dark-3 dark:bg-dark-2 w-[300px] sm:w-[300px] md:w-[400px] lg:w-[500px]">
@@ -76,11 +76,11 @@ export default function Clipboard({ text }) {
           <textarea
             rows="6"
             ref={inputRef}
-            value={editableText}  
+            value={editableText}
             onChange={handleTextChange}
             className="w-full rounded-b-lg border border-t-0 border-stroke bg-gray-1 p-5 leading-relaxed text-body-color outline-none duration-200 selection:bg-transparent focus:border-primary dark:border-dark-3 dark:bg-dark-2 dark:text-dark-6 no-scrollbar"
             style={{ overflow: "hidden", resize: "none" }}
-            readOnly={!isEditable}  
+            readOnly={!isEditable}
           />
         </div>
       </div>
