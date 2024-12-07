@@ -5,7 +5,7 @@ function Footer() {
           <div className="md:flex md:justify-between">
             <div className="mb-6 md:mb-0">
               <a href="/#" className="flex items-center">
-                <img src="../src/img/lips_icon.png" className="h-8 me-3" alt="FlowBite Logo" />
+                <img src="../../public/img/lips_icon.png" className="h-8 me-3" alt="FlowBite Logo" />
                 <span className="self-center text-1xl font-bold whitespace-nowrap text-gray-800 dark:text-white">SpeechTranscriber</span>
               </a>
             </div>
