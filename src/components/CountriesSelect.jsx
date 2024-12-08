@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-export function CountriesSelect() {
+export function CountriesSelect({ onLanguageChange }) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [selectedState, setSelectedState] = useState({ name: 'Italia', flagUrl: 'https://flagcdn.com/w320/it.png', abbreviation: 'IT' });
   const dropdownRef = useRef(null);
@@ -12,6 +12,7 @@ export function CountriesSelect() {
   const handleStateSelect = (state) => {
     setSelectedState(state);
     setDropdownOpen(false);
+    onLanguageChange(state);
   };
 
   const handleClickOutside = (event) => {

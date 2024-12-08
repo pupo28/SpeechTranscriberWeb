@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Clipboard from './ClipBoard.jsx';
 import Notifications from './Notifications';
 
-export default function Home({ setAudioStream, setFile, setTranscriptionProp }) {
+export default function Home({ selectedLanguage, setAudioStream, setFile, setTranscriptionProp }) {
   const [recordingStatus, setRecordingStatus] = useState('inactive');
   const [audioChunks, setAudioChunks] = useState([]);
   const [duration, setDuration] = useState(0);  
@@ -40,6 +40,27 @@ export default function Home({ setAudioStream, setFile, setTranscriptionProp }) 
       setNotificationType('danger'); 
     }
   }, []);
+
+  useEffect(() => {
+    if (speechRecognition.current) {
+      switch (selectedLanguage.name) {
+        case 'Francia':
+          speechRecognition.current.lang = 'fr-FR';
+          break;
+        case 'Germania':
+          speechRecognition.current.lang = 'de-DE';
+          break;
+        case 'Spagna':
+          speechRecognition.current.lang = 'es-ES';
+          break;
+        case 'Regno Unito':
+          speechRecognition.current.lang = 'en-GB';
+          break;
+        default:
+          speechRecognition.current.lang = 'it-IT';
+      }
+    }
+  }, [selectedLanguage]);
 
   async function startRecording() {
     let tempStream;

@@ -1,4 +1,4 @@
-import logo from '../img/lips_icon.png';  
+import logo from '../../public/lips_icon.png';  
 
 function Footer() {
     return (
